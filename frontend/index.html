@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote Your Cloud Favorite</title>
     <!-- CSS works both when served by Flask (local) and when uploaded to S3 (you'll keep same file layout) -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    <link rel="stylesheet" href="style.css">
+    
+    
+    
+    
+    <!-- this is the main file 
+     -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+
+
+
+
+    </head>
 <body>
     <div class="container">
         <h1>Vote Your Cloud Favorite</h1>
         
         <!-- Keep original server form POST behavior (unchanged) -->
-        <form method="POST" action="/">
+        <form method="POST" action="http://2tier-alb-1508812337.ap-south-1.elb.amazonaws.com">
             <label for="option">Choose a Cloud Provider:</label>
             <select name="option" id="option" required>
                 <option value="">Select...</option>
@@ -38,7 +49,7 @@
 <script>
   // Leave empty for local testing (will call relative /api/results).
   // When uploaded to S3, set API_URL to your ALB DNS (including protocol).
-  const API_URL = ""; // e.g. "https://your-alb-dns"
+  const API_URL = "2tier-alb-1508812337.ap-south-1.elb.amazonaws.com"; // e.g. "https://your-alb-dns"
 
   async function loadResults() {
     try {
